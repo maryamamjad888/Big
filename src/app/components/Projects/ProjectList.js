@@ -24,6 +24,16 @@ const ProjectList = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (selectedProjectId) {
+      const selectedProject = projects.find(p => p.id === selectedProjectId);
+      const url = `/projects/${selectedProject.name.replace(/\s+/g, '-').toLowerCase()}-${selectedProjectId}`;
+      window.history.pushState(null, '', url);
+    }else {
+      window.history.replaceState(null, '', '/');
+    }
+  }, [selectedProjectId]);
+
   const handleProjectClick = (id) => {
     setSelectedProjectId(id === selectedProjectId ? null : id);
   };
@@ -43,7 +53,7 @@ const ProjectList = () => {
     const selectedDiv = e.target.closest('.project-item.selected');
     if (selectedDiv) {
       const x = e.pageX - selectedDiv.offsetLeft;
-      const walk = (x - startX.current) * 2; // Adjust the multiplier for scroll speed
+      const walk = (x - startX.current) * 2;
       selectedDiv.scrollLeft = scrollLeft.current - walk;
     }
   };

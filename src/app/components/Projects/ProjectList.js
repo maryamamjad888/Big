@@ -1,17 +1,20 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import projects from '../../data/projects';
 import ProjectDetails from './ProjectDetails';
 
 const ProjectList = () => {
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [isScaled, setIsScaled] = useState(false);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScaled(true);
       clearTimeout(window.scaleTimeout);
-      window.scaleTimeout = setTimeout(() => setIsScaled(false), 600); 
+      window.scaleTimeout = setTimeout(() => setIsScaled(false), 600);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -25,15 +28,45 @@ const ProjectList = () => {
     setSelectedProjectId(id === selectedProjectId ? null : id);
   };
 
+  const handleMouseDown = (e) => {
+    const selectedDiv = e.target.closest('.project-item.selected');
+    if (selectedDiv) {
+      isDragging.current = true;
+      startX.current = e.pageX - selectedDiv.offsetLeft;
+      scrollLeft.current = selectedDiv.scrollLeft;
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging.current) return;
+    e.preventDefault();
+    const selectedDiv = e.target.closest('.project-item.selected');
+    if (selectedDiv) {
+      const x = e.pageX - selectedDiv.offsetLeft;
+      const walk = (x - startX.current) * 2; // Adjust the multiplier for scroll speed
+      selectedDiv.scrollLeft = scrollLeft.current - walk;
+    }
+  };
+
+  const handleMouseUpOrLeave = () => {
+    isDragging.current = false;
+  };
+
   return (
-    <div className={`project-list ${isScaled ? 'scaled' : ''}`}>
+    <div
+      className={`project-list ${isScaled ? 'scaled' : ''}`}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUpOrLeave}
+      onMouseLeave={handleMouseUpOrLeave}
+    >
       {projects.map(project => (
         <div
           key={project.id}
           className={`project-item ${selectedProjectId === project.id ? 'selected' : ''}`}
         >
           <div className="main-image" onClick={() => handleProjectClick(project.id)}>
-            <img src={project.image} alt={project.name} />
+            <img src={project.image} alt={project.name} draggable="false" />
           </div>
           {selectedProjectId === project.id && (
             <div className="project-details-wrapper">
@@ -42,7 +75,7 @@ const ProjectList = () => {
           )}
           <div className="side-details">
             <div className="project-icon">
-              <img src={project.icon} alt={`${project.name} icon`} />
+              <img src={project.icon} alt={`${project.name} icon`} draggable="false" />
             </div>
             <div className="project-info">
               <h3>{project.name}</h3>
@@ -56,4 +89,3 @@ const ProjectList = () => {
 };
 
 export default ProjectList;
-

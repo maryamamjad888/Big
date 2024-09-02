@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Navbar from '../../components/Navbar/Navbar';
-import ProjectList from '../../components/Projects/ProjectList';
+import React from "react";
+import Navbar from "../../components/Navbar/Navbar";
+import ProjectList from "../../components/Projects/ProjectList";
 
 const ProjectPage = () => {
   return (

@@ -17,7 +17,7 @@ const ProjectDetails = ({ project }) => {
       {project.details.map((detail, index) => (
         <div key={index} className={`detail-item ${detail.type}`}>
           {detail.type === 'text' && <p>{detail.content}</p>}
-          {detail.type === 'image' && <img src={detail.src} alt={`Detail ${index}`} />}
+          {detail.type === 'image' && <img src={detail.src} alt={`Detail ${index}`} draggable='false' />}
         </div>
       ))}
     </div>

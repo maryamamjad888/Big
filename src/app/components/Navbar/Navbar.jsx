@@ -25,8 +25,7 @@ function MyNavbar({ onSearchChange }) {
   };
 
   const handleSearchChange = (e) => {
-    console.log("Search Query:", e.target.value);
-    onSearchChange(e.target.value); // Pass the search query to parent
+    onSearchChange(e.target.value);
   };
 
   useEffect(() => {

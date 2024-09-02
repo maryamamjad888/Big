@@ -25,15 +25,12 @@ const ProjectList = ({ searchQuery = "" }) => {
     setSelectedProjectId(id === selectedProjectId ? null : id);
   };
 
-  // Ensure searchQuery is defined and handle it safely
   const filteredProjects = projects.filter((project) =>
     project.location
       .toLowerCase()
       .trim()
       .includes(searchQuery.toLowerCase().trim())
   );
-
-  console.log("Filtered Projects:", filteredProjects);
 
   return (
     <div className={`project-list ${isScaled ? "scaled" : ""}`}>

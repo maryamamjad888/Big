@@ -350,7 +350,10 @@ a {
   overflow-x: scroll;
   overflow-y: hidden;
   transition: all 0.8s ease;
-  
+  cursor: grab;
+}
+.project-item:active {
+  cursor: grabbing; /* Change cursor when dragging */
 }
 
 .main-image img {
@@ -384,4 +387,8 @@ a {
 
 .project-item::-webkit-scrollbar {
   display: none;
+}
+
+.project-details-content .detail-item p,.project-details-content .detail-item img {
+  user-select: none;
 }

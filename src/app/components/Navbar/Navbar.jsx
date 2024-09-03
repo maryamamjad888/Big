@@ -88,7 +88,7 @@ function MyNavbar({ onSearchChange }) {
               </Button>
               <FormControl
                 type="search"
-                placeholder=""
+                placeholder="search"
                 className="me-2"
                 aria-label="Search"
                 onChange={handleSearchChange}

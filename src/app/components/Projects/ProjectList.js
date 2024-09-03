@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-
 import projects from "../../data/projects";
 import ProjectDetails from "./ProjectDetails";
 
@@ -10,6 +9,22 @@ const ProjectList = ({ searchQuery = "" }) => {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
+
+  // Parse the URL on the initial load to set the selected project
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const path = window.location.pathname;
+      const match = path.match(/\/projects\/(.+)-(\d+)/);
+
+      if (match) {
+        const projectId = parseInt(match[2], 10);
+        const project = projects.find((p) => p.id === projectId);
+        if (project) {
+          setSelectedProjectId(project.id);
+        }
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,14 +41,14 @@ const ProjectList = ({ searchQuery = "" }) => {
   }, []);
 
   useEffect(() => {
-    if (selectedProjectId) {
+    if (selectedProjectId !== null && typeof window !== "undefined") {
       const selectedProject = projects.find((p) => p.id === selectedProjectId);
-      const url = `/projects/${selectedProject.name
-        .replace(/\s+/g, "-")
-        .toLowerCase()}-${selectedProjectId}`;
-      window.history.pushState(null, "", url);
-    } else {
-      window.history.replaceState(null, "", "/");
+      if (selectedProject) {
+        const url = `/projects/${selectedProject.name
+          .replace(/\s+/g, "-")
+          .toLowerCase()}-${selectedProjectId}`;
+        window.history.pushState(null, "", url);
+      }
     }
   }, [selectedProjectId]);
 
@@ -70,47 +85,51 @@ const ProjectList = ({ searchQuery = "" }) => {
       .toLowerCase()
       .trim()
       .includes(searchQuery.toLowerCase().trim())
-  );
+  );
 
-return (
-  <div className={`project-list ${isScaled ? "scaled" : ""}`}
+  return (
+    <div
+      className={`project-list ${isScaled ? "scaled" : ""}`}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUpOrLeave}
       onMouseLeave={handleMouseUpOrLeave}
-  >
-    {filteredProjects.length > 0 ? (
-      filteredProjects.map((project) => (
-        <div
-          key={project.id}
-          className={`project-item ${selectedProjectId === project.id ? "selected" : ""}`}>
+    >
+      {filteredProjects.length > 0 ? (
+        filteredProjects.map((project) => (
           <div
-            className="main-image"
-            onClick={() => handleProjectClick(project.id)}
+            key={project.id}
+            className={`project-item ${
+              selectedProjectId === project.id ? "selected" : ""
+            }`}
           >
-            <img src={project.image} alt={project.name} draggable='false' />
+            <div
+              className="main-image"
+              onClick={() => handleProjectClick(project.id)}
+            >
+              <img src={project.image} alt={project.name} draggable="false" />
+            </div>
+            {selectedProjectId === project.id && (
+              <div className="project-details-wrapper">
+                <ProjectDetails project={project} />
+              </div>
+            )}
+            <div className="side-details">
+              <div className="project-icon">
+                <img src={project.icon} alt={`${project.name} icon`} draggable="false" />
+              </div>
+              <div className="project-info">
+                <h3>{project.name}</h3>
+                <p>{project.location}</p>
+              </div>
+            </div>
           </div>
-          {selectedProjectId === project.id && (
-            <div className="project-details-wrapper">
-              <ProjectDetails project={project} />
-            </div>
-          )}
-          <div className="side-details">
-            <div className="project-icon">
-              <img src={project.icon} alt={`${project.name} icon`} draggable='false' />
-            </div>
-            <div className="project-info">
-              <h3>{project.name}</h3>
-              <p>{project.location}</p>
-            </div>
-          </div>
-        </div>
-      ))
-    ) : (
-      <p>No projects found for ${searchQuery}</p>
-    )}
-    </div>
-  );
+        ))
+      ) : (
+        <p>No projects found for {searchQuery}</p>
+      )}
+    </div>
+  );
 };
 
 export default ProjectList;

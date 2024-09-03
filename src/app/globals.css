@@ -410,23 +410,6 @@ a {
   user-select: none;
 }
 
-.footer {
-  display: flex;
-  font-family: "__Inter_36bd41", "__Inter_Fallback_36bd41";
-  margin-top: 100px;
-  width: 100%;
-  text-transform: uppercase;
-  position: relative;
-  font-size: 12px;
-  color: #6b6b6b;
-  margin-bottom: 100px;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 100px;
-  height: 320px;
-  max-width: 840;
-
-  justify-content: center;
-}
 .footer a {
   text-decoration: none;
   color: #6b6b6b !important;
@@ -447,8 +430,19 @@ a {
 }
 
 .footer {
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  padding: 20px 160px;
+  display: flex;
+  font-family: "__Inter_36bd41", "__Inter_Fallback_36bd41";
+  margin-top: 100px;
+  width: 100%;
+  text-transform: uppercase;
+  position: relative;
+  font-size: 12px;
+  color: #6b6b6b;
+  margin-bottom: 100px;
+  gap: 50px;
+  height: 320px;
+  justify-content: center;
 }
 
 .footer-toggle {
@@ -456,7 +450,12 @@ a {
   display: flex;
   align-items: center;
 }
-
+.email,
+.offices,
+.social,
+.legal {
+  width: 25%;
+}
 .icon {
   margin-left: 10px;
   font-size: 13px;

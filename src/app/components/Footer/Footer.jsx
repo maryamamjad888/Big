@@ -2,21 +2,30 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 function Footer() {
-  const [showEmailList, setShowEmailList] = useState(false);
+  const [visibleSection, setVisibleSection] = useState("");
 
-  const handleEmailClick = () => {
-    setShowEmailList(!showEmailList);
+  const handleToggle = (section) => {
+    setVisibleSection((prevSection) =>
+      prevSection === section ? "" : section
+    );
   };
 
   return (
     <div className="footer">
-      <div>
-        <div onClick={handleEmailClick} className="footer-toggle">
+      <div classNames="email">
+        <div onClick={() => handleToggle("email")} className="footer-toggle">
           Email
-          <span className={`icon ${showEmailList ? "rotate" : ""}`}>+</span>
+          <span
+            className={`icon ${visibleSection === "email" ? "rotate" : ""}`}
+          >
+            +
+          </span>
         </div>
-
-        <ul className={`email-list ${showEmailList ? "show" : "hide"}`}>
+        <ul
+          className={`email-list ${
+            visibleSection === "email" ? "show" : "hide"
+          }`}
+        >
           <li>
             <span>new projects</span>
             <Link className="mails" href="mailto:newbiz@big.dk">
@@ -43,9 +52,79 @@ function Footer() {
           </li>
         </ul>
       </div>
-      <div>Offices +</div>
-      <div>Social +</div>
-      <div>Legal +</div>
+
+      <div className="offices">
+        <div onClick={() => handleToggle("offices")} className="footer-toggle">
+          Offices
+          <span
+            className={`icon ${visibleSection === "offices" ? "rotate" : ""}`}
+          >
+            +
+          </span>
+        </div>
+        <ul
+          className={`email-list ${
+            visibleSection === "offices" ? "show" : "hide"
+          }`}
+        >
+          <li>copenhagen</li>
+          <li>london</li>
+          <li>barcelona</li>
+          <li>new york</li>
+          <li>shenzhen</li>
+          <li>los angeles</li>
+          <li>oslo</li>
+        </ul>
+      </div>
+
+      <div className="social">
+        <div onClick={() => handleToggle("social")} className="footer-toggle">
+          Social
+          <span
+            className={`icon ${visibleSection === "social" ? "rotate" : ""}`}
+          >
+            +
+          </span>
+        </div>
+        <ul
+          className={`email-list ${
+            visibleSection === "social" ? "show" : "hide"
+          }`}
+        >
+          <li>instagram</li>
+          <li>twitter</li>
+          <li>linkedin</li>
+          <li>vimeo</li>
+          <li>facebook</li>
+        </ul>
+      </div>
+
+      <div className="legal">
+        <div onClick={() => handleToggle("legal")} className="footer-toggle">
+          Legal
+          <span
+            className={`icon ${visibleSection === "legal" ? "rotate" : ""}`}
+          >
+            +
+          </span>
+        </div>
+        <ul
+          className={`email-list ${
+            visibleSection === "legal" ? "show" : "hide"
+          }`}
+        >
+          <li>
+            BIG's Anti-Slavery and Human <br />
+            Trafficking Statement 2018
+          </li>
+          <li>BIG's Privacy Policy 2023</li>
+          <li>BIG UN Global Compact Report</li>
+          <li>
+            BIG's Annual Sustainability. <br /> Report, 2023
+          </li>
+          <li>Ethics Hotline</li>
+        </ul>
+      </div>
     </div>
   );
 }

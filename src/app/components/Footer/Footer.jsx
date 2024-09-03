@@ -12,7 +12,7 @@ function Footer() {
 
   return (
     <div className="footer">
-      <div classNames="email">
+      <div className="email">
         <div onClick={() => handleToggle("email")} className="footer-toggle">
           Email
           <span

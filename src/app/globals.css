@@ -430,7 +430,7 @@ a {
 }
 
 .footer {
-  padding: 20px 160px;
+  padding: 20px 140px;
   display: flex;
   font-family: "__Inter_36bd41", "__Inter_Fallback_36bd41";
   margin-top: 100px;
@@ -440,7 +440,7 @@ a {
   font-size: 12px;
   color: #6b6b6b;
   margin-bottom: 100px;
-  gap: 50px;
+  gap: 40px;
   height: 320px;
   justify-content: center;
 }

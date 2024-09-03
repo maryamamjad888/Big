@@ -65,26 +65,30 @@ const ProjectList = ({ searchQuery = "" }) => {
     isDragging.current = false;
   };
 
-  return (
-    <div
-      className={`project-list ${isScaled ? "scaled" : ""}`}
+  const filteredProjects = projects.filter((project) =>
+    project.location
+      .toLowerCase()
+      .trim()
+      .includes(searchQuery.toLowerCase().trim())
+  );
+
+return (
+  <div className={`project-list ${isScaled ? "scaled" : ""}`}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUpOrLeave}
       onMouseLeave={handleMouseUpOrLeave}
-    >
-      {projects.map((project) => (
+  >
+    {filteredProjects.length > 0 ? (
+      filteredProjects.map((project) => (
         <div
           key={project.id}
-          className={`project-item ${
-            selectedProjectId === project.id ? "selected" : ""
-          }`}
-        >
+          className={`project-item ${selectedProjectId === project.id ? "selected" : ""}`}>
           <div
             className="main-image"
             onClick={() => handleProjectClick(project.id)}
           >
-            <img src={project.image} alt={project.name} draggable="false" />
+            <img src={project.image} alt={project.name} draggable='false' />
           </div>
           {selectedProjectId === project.id && (
             <div className="project-details-wrapper">
@@ -93,11 +97,7 @@ const ProjectList = ({ searchQuery = "" }) => {
           )}
           <div className="side-details">
             <div className="project-icon">
-              <img
-                src={project.icon}
-                alt={`${project.name} icon`}
-                draggable="false"
-              />
+              <img src={project.icon} alt={`${project.name} icon`} draggable='false' />
             </div>
             <div className="project-info">
               <h3>{project.name}</h3>
@@ -105,9 +105,12 @@ const ProjectList = ({ searchQuery = "" }) => {
             </div>
           </div>
         </div>
-      ))}
-    </div>
-  );
+      ))
+    ) : (
+      <p>No projects found for ${searchQuery}</p>
+    )}
+    </div>
+  );
 };
 
 export default ProjectList;

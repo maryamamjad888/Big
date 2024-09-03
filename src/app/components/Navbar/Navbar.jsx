@@ -28,6 +28,10 @@ function MyNavbar({ onSearchChange }) {
     onSearchChange(e.target.value);
   };
 
+  const handleNavClick = (keyword) => {
+    onSearchChange(keyword);
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -42,11 +46,21 @@ function MyNavbar({ onSearchChange }) {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">LANDSCAPE</Nav.Link>
-              <Nav.Link href="#about">ENGINEERING</Nav.Link>
-              <Nav.Link href="#services">ARCHITECTURE</Nav.Link>
-              <Nav.Link href="#planning">PLANNING</Nav.Link>
-              <Nav.Link href="#products">PRODUCTS</Nav.Link>
+              <Nav.Link onClick={() => handleNavClick("landscape")}>
+                LANDSCAPE
+              </Nav.Link>
+              <Nav.Link onClick={() => handleNavClick("engineering")}>
+                ENGINEERING
+              </Nav.Link>
+              <Nav.Link onClick={() => handleNavClick("architecture")}>
+                ARCHITECTURE
+              </Nav.Link>
+              <Nav.Link onClick={() => handleNavClick("planning")}>
+                PLANNING
+              </Nav.Link>
+              <Nav.Link onClick={() => handleNavClick("products")}>
+                PRODUCTS
+              </Nav.Link>
             </Nav>
             <Form className="custom-form-search d-flex justify-content-end">
               <Button>

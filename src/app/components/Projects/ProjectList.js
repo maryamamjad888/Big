@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-
 import projects from "../../data/projects";
 import ProjectDetails from "./ProjectDetails";
 
@@ -65,52 +64,61 @@ const ProjectList = ({ searchQuery = "" }) => {
     isDragging.current = false;
   };
 
-  const filteredProjects = projects.filter((project) =>
-    project.location
-      .toLowerCase()
-      .trim()
-      .includes(searchQuery.toLowerCase().trim())
-  );
+  const filteredProjects = projects.filter((project) => {
+    const searchLower = searchQuery.toLowerCase().trim();
+    return (
+      project.location.toLowerCase().includes(searchLower) ||
+      (project.keywords && project.keywords.toLowerCase().includes(searchLower))
+    );
+  });
 
-return (
-  <div className={`project-list ${isScaled ? "scaled" : ""}`}
+  return (
+    <div
+      className={`project-list ${isScaled ? "scaled" : ""}`}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUpOrLeave}
       onMouseLeave={handleMouseUpOrLeave}
-  >
-    {filteredProjects.length > 0 ? (
-      filteredProjects.map((project) => (
-        <div
-          key={project.id}
-          className={`project-item ${selectedProjectId === project.id ? "selected" : ""}`}>
+    >
+      {filteredProjects.length > 0 ? (
+        filteredProjects.map((project) => (
           <div
-            className="main-image"
-            onClick={() => handleProjectClick(project.id)}
+            key={project.id}
+            className={`project-item ${
+              selectedProjectId === project.id ? "selected" : ""
+            }`}
           >
-            <img src={project.image} alt={project.name} draggable='false' />
+            <div
+              className="main-image"
+              onClick={() => handleProjectClick(project.id)}
+            >
+              <img src={project.image} alt={project.name} draggable="false" />
+            </div>
+            {selectedProjectId === project.id && (
+              <div className="project-details-wrapper">
+                <ProjectDetails project={project} />
+              </div>
+            )}
+            <div className="side-details">
+              <div className="project-icon">
+                <img
+                  src={project.icon}
+                  alt={`${project.name} icon`}
+                  draggable="false"
+                />
+              </div>
+              <div className="project-info">
+                <h3>{project.name}</h3>
+                <p>{project.location}</p>
+              </div>
+            </div>
           </div>
-          {selectedProjectId === project.id && (
-            <div className="project-details-wrapper">
-              <ProjectDetails project={project} />
-            </div>
-          )}
-          <div className="side-details">
-            <div className="project-icon">
-              <img src={project.icon} alt={`${project.name} icon`} draggable='false' />
-            </div>
-            <div className="project-info">
-              <h3>{project.name}</h3>
-              <p>{project.location}</p>
-            </div>
-          </div>
-        </div>
-      ))
-    ) : (
-      <p>No projects found for ${searchQuery}</p>
-    )}
-    </div>
-  );
+        ))
+      ) : (
+        <p>No projects found for "{searchQuery}"</p>
+      )}
+    </div>
+  );
 };
 
 export default ProjectList;

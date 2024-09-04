@@ -57,6 +57,7 @@ function MyNavbar({ onSearchChange }) {
   };
 
   const handleSuggestionClick = (suggestion) => {
+    setPlaceholder(suggestion);
     onSearchChange(suggestion);
     setIsFocused(false); // Hide suggestions after selection
   };

@@ -103,7 +103,7 @@ const ProjectList = ({ searchQuery = "" }) => {
           </div>
         ))
       ) : (
-        <p>No projects found for ${searchQuery}</p>
+        <p>No projects found for {searchQuery}</p>
       )}
     </div>
   );

@@ -424,11 +424,13 @@ a {
   left: 47%;
   margin: 0;
   padding: 0;
+  z-index: 999;
 }
 
 .suggestions li {
   padding-top: 5px;
   list-style: none;
+  cursor: pointer !important;
 }
 .custom-search-input::placeholder {
   color: #6b6b6b;

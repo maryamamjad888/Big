@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -55,6 +54,11 @@ function MyNavbar({ onSearchChange }) {
 
   const handleBlur = () => {
     setIsFocused(false);
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    onSearchChange(suggestion);
+    setIsFocused(false); // Hide suggestions after selection
   };
 
   useEffect(() => {
@@ -167,11 +171,14 @@ function MyNavbar({ onSearchChange }) {
               />
               {isFocused && (
                 <ul className="suggestions">
-                  <li>COMPLETED</li>
-                  <li>FRANCE</li>
-                  <li>EDUCATION</li>
-                  <li>MUSEUM</li>
-                  <li>SUSTAINABILITY</li>
+                  {placeholderValues.map((value, index) => (
+                    <li
+                      key={index}
+                      onMouseDown={() => handleSuggestionClick(value)}
+                    >
+                      {value}
+                    </li>
+                  ))}
                 </ul>
               )}
             </Form>

@@ -439,7 +439,6 @@ a {
   position: relative;
   font-size: 12px;
   color: #6b6b6b;
-  margin-bottom: 100px;
   gap: 40px;
   height: 320px;
   justify-content: center;
@@ -498,4 +497,20 @@ a {
 
 .email-list a:hover {
   text-decoration: underline;
+}
+
+.btt {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.btt button {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  text-transform: uppercase;
+  font-family: "__Inter_36bd41", "__Inter_Fallback_36bd41";
+  font-size: 12px;
+  color: #000000;
+  font-weight: 400;
 }

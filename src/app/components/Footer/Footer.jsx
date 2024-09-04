@@ -10,8 +10,13 @@ function Footer() {
     );
   };
 
+  const handleBackToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
   return (
-    <div className="footer">
+    <>
+      <div className="footer">
       <div className="email">
         <div onClick={() => handleToggle("email")} className="footer-toggle">
           Email
@@ -114,18 +119,23 @@ function Footer() {
           }`}
         >
           <li>
-            BIG's Anti-Slavery and Human <br />
-            Trafficking Statement 2018
+            {`BIG's Anti-Slavery and Human
+            Trafficking Statement 2018`}
           </li>
-          <li>BIG's Privacy Policy 2023</li>
+          <li>{`BIG's Privacy Policy 2023`}</li>
           <li>BIG UN Global Compact Report</li>
           <li>
-            BIG's Annual Sustainability. <br /> Report, 2023
+            {`BIG's Annual Sustainability. 
+            Report, 2023`}
           </li>
           <li>Ethics Hotline</li>
         </ul>
       </div>
     </div>
+    <div className="btt">
+      <button onClick={handleBackToTop}>back to top</button>
+    </div>
+    </>
   );
 }
 

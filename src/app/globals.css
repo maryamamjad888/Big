@@ -409,16 +409,31 @@ a {
 .project-details-content .detail-item img {
   user-select: none;
 }
+.form-control:focus {
+  box-shadow: none !important;
+}
+.custom-search-input {
+  outline: 0;
+}
+.suggestions {
+  position: absolute;
+  top: 100%;
+  font-size: 11px;
+  color: #8e8d8d;
+  font-weight: 250;
+  left: 47%;
+  margin: 0;
+  padding: 0;
+}
 
-/* Add this to your CSS file */
+.suggestions li {
+  padding-top: 5px;
+  list-style: none;
+}
 .custom-search-input::placeholder {
   color: #6b6b6b;
   font-size: 11px;
   font-weight: 250;
-}
-
-.custom-search-input {
-  /* Add any additional styling needed */
 }
 
 .footer a {

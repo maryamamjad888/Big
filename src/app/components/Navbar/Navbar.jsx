@@ -13,6 +13,7 @@ function MyNavbar({ onSearchChange }) {
   const [isSticky, setIsSticky] = useState(false);
   const [activeFilter, setActiveFilter] = useState("");
   const [placeholder, setPlaceholder] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
 
   const placeholderValues = [
     "COMPLETED",
@@ -46,6 +47,14 @@ function MyNavbar({ onSearchChange }) {
       setActiveFilter(keyword);
       onSearchChange(keyword);
     }
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
   };
 
   useEffect(() => {
@@ -150,10 +159,21 @@ function MyNavbar({ onSearchChange }) {
               <FormControl
                 type="search"
                 className="me-2 custom-search-input"
-                placeholder={placeholder}
+                placeholder={isFocused ? "" : placeholder}
                 aria-label="Search"
                 onChange={handleSearchChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
               />
+              {isFocused && (
+                <ul className="suggestions">
+                  <li>COMPLETED</li>
+                  <li>FRANCE</li>
+                  <li>EDUCATION</li>
+                  <li>MUSEUM</li>
+                  <li>SUSTAINABILITY</li>
+                </ul>
+              )}
             </Form>
           </Navbar.Collapse>
         </Navbar>

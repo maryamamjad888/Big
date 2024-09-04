@@ -11,8 +11,17 @@ import Sidebar from "./Sidebar";
 function MyNavbar({ onSearchChange }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-
   const [activeFilter, setActiveFilter] = useState("");
+  const [placeholder, setPlaceholder] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
+
+  const placeholderValues = [
+    "COMPLETED",
+    "FRANCE",
+    "EDUCATION",
+    "MUSEUM",
+    "SUSTAINABILITY",
+  ];
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -31,13 +40,36 @@ function MyNavbar({ onSearchChange }) {
   };
 
   const handleNavClick = (keyword) => {
-    setActiveFilter(keyword);
-    onSearchChange(keyword);
+    if (activeFilter === keyword) {
+      setActiveFilter("");
+      onSearchChange("");
+    } else {
+      setActiveFilter(keyword);
+      onSearchChange(keyword);
+    }
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
   };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const intervalId = setInterval(() => {
+      setPlaceholder(placeholderValues[currentIndex]);
+      currentIndex = (currentIndex + 1) % placeholderValues.length;
+    }, 3000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
@@ -126,11 +158,22 @@ function MyNavbar({ onSearchChange }) {
               </Button>
               <FormControl
                 type="search"
-                placeholder=""
-                className="me-2"
+                className="me-2 custom-search-input"
+                placeholder={isFocused ? "" : placeholder}
                 aria-label="Search"
                 onChange={handleSearchChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
               />
+              {isFocused && (
+                <ul className="suggestions">
+                  <li>COMPLETED</li>
+                  <li>FRANCE</li>
+                  <li>EDUCATION</li>
+                  <li>MUSEUM</li>
+                  <li>SUSTAINABILITY</li>
+                </ul>
+              )}
             </Form>
           </Navbar.Collapse>
         </Navbar>

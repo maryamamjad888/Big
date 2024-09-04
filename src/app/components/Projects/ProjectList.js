@@ -80,12 +80,13 @@ const ProjectList = ({ searchQuery = "" }) => {
     isDragging.current = false;
   };
 
-  const filteredProjects = projects.filter((project) =>
-    project.location
-      .toLowerCase()
-      .trim()
-      .includes(searchQuery.toLowerCase().trim())
-  );
+  const filteredProjects = projects.filter((project) => {
+    const searchLower = searchQuery.toLowerCase().trim();
+    return (
+      project.location.toLowerCase().includes(searchLower) ||
+      (project.keywords && project.keywords.toLowerCase().includes(searchLower))
+    );
+  });
 
   return (
     <div
@@ -116,7 +117,15 @@ const ProjectList = ({ searchQuery = "" }) => {
             )}
             <div className="side-details">
               <div className="project-icon">
+<<<<<<<<< Temporary merge branch 1
+                <img
+                  src={project.icon}
+                  alt={`${project.name} icon`}
+                  draggable="false"
+                />
+=========
                 <img src={project.icon} alt={`${project.name} icon`} draggable="false" />
+>>>>>>>>> Temporary merge branch 2
               </div>
               <div className="project-info">
                 <h3>{project.name}</h3>
@@ -126,7 +135,11 @@ const ProjectList = ({ searchQuery = "" }) => {
           </div>
         ))
       ) : (
+<<<<<<<<< Temporary merge branch 1
+        <p>No projects found for "{searchQuery}"</p>
+=========
         <p>No projects found for {searchQuery}</p>
+>>>>>>>>> Temporary merge branch 2
       )}
     </div>
   );

@@ -12,6 +12,8 @@ function MyNavbar({ onSearchChange }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
+  const [activeFilter, setActiveFilter] = useState("");
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -29,6 +31,7 @@ function MyNavbar({ onSearchChange }) {
   };
 
   const handleNavClick = (keyword) => {
+    setActiveFilter(keyword);
     onSearchChange(keyword);
   };
 
@@ -46,19 +49,54 @@ function MyNavbar({ onSearchChange }) {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link onClick={() => handleNavClick("landscape")}>
+              <Nav.Link
+                href="#landscape"
+                onClick={() => handleNavClick("landscape")}
+                className="nav-link"
+              >
+                {activeFilter === "landscape" && (
+                  <span className="active-dot"></span>
+                )}
                 LANDSCAPE
               </Nav.Link>
-              <Nav.Link onClick={() => handleNavClick("engineering")}>
+              <Nav.Link
+                href="#engineering"
+                onClick={() => handleNavClick("engineering")}
+                className="nav-link"
+              >
+                {activeFilter === "engineering" && (
+                  <span className="active-dot"></span>
+                )}
                 ENGINEERING
               </Nav.Link>
-              <Nav.Link onClick={() => handleNavClick("architecture")}>
+              <Nav.Link
+                href="#architecture"
+                onClick={() => handleNavClick("architecture")}
+                className="nav-link"
+              >
+                {activeFilter === "architecture" && (
+                  <span className="active-dot"></span>
+                )}
                 ARCHITECTURE
               </Nav.Link>
-              <Nav.Link onClick={() => handleNavClick("planning")}>
+              <Nav.Link
+                href="#planning"
+                onClick={() => handleNavClick("planning")}
+                className="nav-link"
+              >
+                {activeFilter === "planning" && (
+                  <span className="active-dot"></span>
+                )}
                 PLANNING
               </Nav.Link>
-              <Nav.Link onClick={() => handleNavClick("products")}>
+              <Nav.Link
+                href="#products"
+                onClick={() => handleNavClick("products")}
+                className="nav-link"
+              >
+                {activeFilter === "products" && (
+                  <span className="active-dot"></span>
+                )}
                 PRODUCTS
               </Nav.Link>
             </Nav>
@@ -88,7 +126,7 @@ function MyNavbar({ onSearchChange }) {
               </Button>
               <FormControl
                 type="search"
-                placeholder="search"
+                placeholder=""
                 className="me-2"
                 aria-label="Search"
                 onChange={handleSearchChange}

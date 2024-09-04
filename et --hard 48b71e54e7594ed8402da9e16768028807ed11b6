@@ -1,0 +1,73 @@
+[33mcommit b1bd0e19819cf1859aaa1fc78832d42374b82f77[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/task2[m[33m)[m
+Author: HSN <choudhryhassan37@gmail.com>
+Date:   Tue Sep 3 13:24:10 2024 +0500
+
+    modify
+
+[33mcommit dce34eff637d4d0de6020ca09a0f870edb6dc1e7[m
+Author: HSN <choudhryhassan37@gmail.com>
+Date:   Tue Sep 3 13:22:29 2024 +0500
+
+    filteration on navbar
+
+[33mcommit 48b71e54e7594ed8402da9e16768028807ed11b6[m
+Author: MuhammadQasimFiaz <80813627+MuhammadQasimFiaz@users.noreply.github.com>
+Date:   Tue Sep 3 11:42:48 2024 +0500
+
+    some changes
+
+[33mcommit 359a62507bc156ae02b14a0211cf1e8394724892[m
+Merge: 52eb35b 6eb223d
+Author: HSN <choudhryhassan37@gmail.com>
+Date:   Tue Sep 3 11:21:54 2024 +0500
+
+    commi
+
+[33mcommit 52eb35bad961bf7a1429036faff985f92fd117ba[m
+Merge: be5940d 7b91bf2
+Author: HSN <choudhryhassan37@gmail.com>
+Date:   Tue Sep 3 11:18:40 2024 +0500
+
+    resolve confilict
+
+[33mcommit 6eb223dab1cd4d03d4bb763278bac6cfa2b6b855[m[33m ([m[1;32mtask2[m[33m)[m
+Author: HSN <choudhryhassan37@gmail.com>
+Date:   Mon Sep 2 17:58:05 2024 +0500
+
+    ss
+
+[33mcommit be5940d6551be4a9c6d5833b9df665281173a1a1[m
+Author: HSN <choudhryhassan37@gmail.com>
+Date:   Mon Sep 2 17:42:54 2024 +0500
+
+    modify search
+
+[33mcommit 864836fc539656c31144940a65bf41183e1e69ab[m
+Author: HSN <choudhryhassan37@gmail.com>
+Date:   Mon Sep 2 17:41:06 2024 +0500
+
+    search functionality
+
+[33mcommit 7b91bf23170ac2705129e9246024e5b4b6e584b3[m[33m ([m[1;31morigin/task1[m[33m, [m[1;32mtask1[m[33m)[m
+Author: MuhammadQasimFiaz <80813627+MuhammadQasimFiaz@users.noreply.github.com>
+Date:   Mon Sep 2 16:33:08 2024 +0500
+
+    add url change on click
+
+[33mcommit 8b6639b1d46c1978a9c92d8ec3f17efbc813e298[m
+Author: MuhammadQasimFiaz <80813627+MuhammadQasimFiaz@users.noreply.github.com>
+Date:   Mon Sep 2 13:21:41 2024 +0500
+
+    add drag functionality
+
+[33mcommit faad2c8c9964faa8cad5ec5f3412ce4adb436dbf[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: maryamamjad888 <maryam@wistech.biz>
+Date:   Mon Sep 2 11:44:10 2024 +0500
+
+    code
+
+[33mcommit a1e15c576e2571bb54e11ac44bc77fce20e90a90[m
+Author: maryamamjad888 <maryam@wistech.biz>
+Date:   Thu Aug 15 13:23:12 2024 +0500
+
+    Initial commit from Create Next App

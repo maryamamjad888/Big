@@ -11,7 +11,6 @@ import Sidebar from "./Sidebar";
 function MyNavbar({ onSearchChange }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-
   const [activeFilter, setActiveFilter] = useState("");
 
   const toggleSidebar = () => {
@@ -31,8 +30,13 @@ function MyNavbar({ onSearchChange }) {
   };
 
   const handleNavClick = (keyword) => {
-    setActiveFilter(keyword);
-    onSearchChange(keyword);
+    if (activeFilter === keyword) {
+      setActiveFilter("");
+      onSearchChange("");
+    } else {
+      setActiveFilter(keyword);
+      onSearchChange(keyword);
+    }
   };
 
   useEffect(() => {

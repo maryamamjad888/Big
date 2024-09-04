@@ -430,11 +430,11 @@ a {
 }
 
 .footer {
-  padding: 20px 140px;
+  padding: 20px 0;
   display: flex;
   font-family: "__Inter_36bd41", "__Inter_Fallback_36bd41";
-  margin-top: 100px;
-  width: 100%;
+  margin: 100px auto 0 auto;
+  width: 75%;
   text-transform: uppercase;
   position: relative;
   font-size: 12px;
@@ -501,7 +501,7 @@ a {
 
 .btt {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 
 .btt button {

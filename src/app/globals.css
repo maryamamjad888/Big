@@ -410,6 +410,17 @@ a {
   user-select: none;
 }
 
+/* Add this to your CSS file */
+.custom-search-input::placeholder {
+  color: #6b6b6b;
+  font-size: 11px;
+  font-weight: 250;
+}
+
+.custom-search-input {
+  /* Add any additional styling needed */
+}
+
 .footer a {
   text-decoration: none;
   color: #6b6b6b !important;

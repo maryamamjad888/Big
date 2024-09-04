@@ -12,6 +12,15 @@ function MyNavbar({ onSearchChange }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [activeFilter, setActiveFilter] = useState("");
+  const [placeholder, setPlaceholder] = useState("");
+
+  const placeholderValues = [
+    "COMPLETED",
+    "FRANCE",
+    "EDUCATION",
+    "MUSEUM",
+    "SUSTAINABILITY",
+  ];
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -42,6 +51,16 @@ function MyNavbar({ onSearchChange }) {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const intervalId = setInterval(() => {
+      setPlaceholder(placeholderValues[currentIndex]);
+      currentIndex = (currentIndex + 1) % placeholderValues.length;
+    }, 3000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
@@ -130,8 +149,8 @@ function MyNavbar({ onSearchChange }) {
               </Button>
               <FormControl
                 type="search"
-                placeholder=""
-                className="me-2"
+                className="me-2 custom-search-input"
+                placeholder={placeholder}
                 aria-label="Search"
                 onChange={handleSearchChange}
               />

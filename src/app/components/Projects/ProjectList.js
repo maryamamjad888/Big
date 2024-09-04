@@ -10,6 +10,22 @@ const ProjectList = ({ searchQuery = "" }) => {
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
+  // Parse the URL on the initial load to set the selected project
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const path = window.location.pathname;
+      const match = path.match(/\/projects\/(.+)-(\d+)/);
+
+      if (match) {
+        const projectId = parseInt(match[2], 10);
+        const project = projects.find((p) => p.id === projectId);
+        if (project) {
+          setSelectedProjectId(project.id);
+        }
+      }
+    }
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScaled(true);
@@ -25,14 +41,14 @@ const ProjectList = ({ searchQuery = "" }) => {
   }, []);
 
   useEffect(() => {
-    if (selectedProjectId) {
+    if (selectedProjectId !== null && typeof window !== "undefined") {
       const selectedProject = projects.find((p) => p.id === selectedProjectId);
-      const url = `/projects/${selectedProject.name
-        .replace(/\s+/g, "-")
-        .toLowerCase()}-${selectedProjectId}`;
-      window.history.pushState(null, "", url);
-    } else {
-      window.history.replaceState(null, "", "/");
+      if (selectedProject) {
+        const url = `/projects/${selectedProject.name
+          .replace(/\s+/g, "-")
+          .toLowerCase()}-${selectedProjectId}`;
+        window.history.pushState(null, "", url);
+      }
     }
   }, [selectedProjectId]);
 
@@ -115,7 +131,7 @@ const ProjectList = ({ searchQuery = "" }) => {
           </div>
         ))
       ) : (
-        <p>No projects found for "{searchQuery}"</p>
+        <p>No projects found for ${searchQuery}</p>
       )}
     </div>
   );

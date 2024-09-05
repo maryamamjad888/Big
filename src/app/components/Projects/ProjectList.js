@@ -10,12 +10,14 @@ const ProjectList = ({ searchQuery = "" }) => {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
-  const router = useRouter()
+  const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
     const matchedProject = projects.find((project) =>
-      pathname.includes(`${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`)
+      pathname.includes(
+        `${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`
+      )
     );
     if (matchedProject) {
       setSelectedProjectId(matchedProject.id);
@@ -40,12 +42,12 @@ const ProjectList = ({ searchQuery = "" }) => {
   }, []);
 
   const handleProjectClick = (id, name) => {
-    setSelectedProjectId(id === selectedProjectId ? null : id)
+    setSelectedProjectId(id === selectedProjectId ? null : id);
     if (id !== selectedProjectId) {
-      let formattedName = name.toLowerCase().replace(/\s+/g, '-');
-      router.push(`/projects/${formattedName}-${id}`)
+      let formattedName = name.toLowerCase().replace(/\s+/g, "-");
+      router.push(`/projects/${formattedName}-${id}`);
     }
-  }
+  };
 
   const handleMouseDown = (e) => {
     const selectedDiv = e.target.closest(".project-item.selected");

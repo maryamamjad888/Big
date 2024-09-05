@@ -10,7 +10,7 @@ import Sidebar from "./Sidebar";
 function MyNavbar({ onSearchChange }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-  const [activeFilter, setActiveFilter] = useState("");
+  const [activeFilter, setActiveFilter] = useState(""); // Tracks active parent filter
   const [placeholder, setPlaceholder] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
@@ -39,6 +39,7 @@ function MyNavbar({ onSearchChange }) {
   };
 
   const handleNavClick = (keyword) => {
+    // Toggle active filter when clicking the same item, otherwise set a new active filter
     if (activeFilter === keyword) {
       setActiveFilter("");
       onSearchChange("");
@@ -95,6 +96,14 @@ function MyNavbar({ onSearchChange }) {
                   <span className="active-dot"></span>
                 )}
                 LANDSCAPE
+                {activeFilter === "landscape" && (
+                  <ul className="landscape-sub">
+                    <li>Public Realm</li>
+                    <li>Parks</li>
+                    <li>Gardens</li>
+                    <li>Terraces</li>
+                  </ul>
+                )}
               </Nav.Link>
               <Nav.Link
                 href=""
@@ -105,6 +114,13 @@ function MyNavbar({ onSearchChange }) {
                   <span className="active-dot"></span>
                 )}
                 ENGINEERING
+                {activeFilter === "engineering" && (
+                  <ul className="engineering-sub">
+                    <li>Structure</li>
+                    <li>Simulation</li>
+                    <li>Sustainability</li>
+                  </ul>
+                )}
               </Nav.Link>
               <Nav.Link
                 href=""
@@ -115,6 +131,20 @@ function MyNavbar({ onSearchChange }) {
                   <span className="active-dot"></span>
                 )}
                 ARCHITECTURE
+                {activeFilter === "architecture" && (
+                  <ul className="architecture-sub">
+                    <li>Culture</li>
+                    <li>Education</li>
+                    <li>Work</li>
+                    <li>Hospitality</li>
+                    <li>Residential</li>
+                    <li>Infrastructure</li>
+                    <li>Space</li>
+                    <li>Interiors</li>
+                    <li>Sports</li>
+                    <li>Health</li>
+                  </ul>
+                )}
               </Nav.Link>
               <Nav.Link
                 href=""
@@ -125,6 +155,13 @@ function MyNavbar({ onSearchChange }) {
                   <span className="active-dot"></span>
                 )}
                 PLANNING
+                {activeFilter === "planning" && (
+                  <ul className="planning-sub">
+                    <li>Campus</li>
+                    <li>City</li>
+                    <li>Region</li>
+                  </ul>
+                )}
               </Nav.Link>
               <Nav.Link
                 href=""
@@ -135,6 +172,15 @@ function MyNavbar({ onSearchChange }) {
                   <span className="active-dot"></span>
                 )}
                 PRODUCTS
+                {activeFilter === "products" && (
+                  <ul className="products-sub">
+                    <li>Lighting</li>
+                    <li>Furniture</li>
+                    <li>Consumer products</li>
+                    <li>Mobility</li>
+                    <li>Installations</li>
+                  </ul>
+                )}
               </Nav.Link>
             </Nav>
             <Form className="custom-form-search d-flex justify-content-end">

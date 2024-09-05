@@ -13,14 +13,14 @@ const ProjectList = ({ searchQuery = "" }) => {
   const router = useRouter()
   const pathname = usePathname();
 
-  useEffect(() => {
-    const matchedProject = projects.find((project) =>
-      pathname.includes(`${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`)
-    );
-    if (matchedProject) {
-      setSelectedProjectId(matchedProject.id);
-    }
-  }, [pathname]);
+  // useEffect(() => {
+  //   const matchedProject = projects.find((project) =>
+  //     pathname.includes(`${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`)
+  //   );
+  //   if (matchedProject) {
+  //     setSelectedProjectId(matchedProject.id);
+  //   }
+  // }, [pathname]);
   // const navigateToPost = (postId) => {
   //   router.push(`/projects/${postId}`);
   // };
@@ -41,10 +41,10 @@ const ProjectList = ({ searchQuery = "" }) => {
 
   const handleProjectClick = (id, name) => {
     setSelectedProjectId(id === selectedProjectId ? null : id)
-    if (id !== selectedProjectId) {
-      let formattedName = name.toLowerCase().replace(/\s+/g, '-');
-      router.push(`/projects/${formattedName}-${id}`)
-    }
+    // if (id !== selectedProjectId) {
+    //   let formattedName = name.toLowerCase().replace(/\s+/g, '-');
+    //   router.push(`/projects/${formattedName}-${id}`)
+    // }
   }
 
   const handleMouseDown = (e) => {
@@ -94,11 +94,11 @@ const ProjectList = ({ searchQuery = "" }) => {
             className={`project-item ${
               selectedProjectId === project.id ? "selected" : ""
             }`}
-            // onClick={() => handleProjectClick(project.id, project.name)}
+            onClick={() => handleProjectClick(project.id, project.name)}
           >
             <div
               className="main-image"
-              onClick={() => handleProjectClick(project.id, project.name)}
+              // onClick={() => handleProjectClick(project.id, project.name)}
             >
               <img src={project.image} alt={project.name} draggable="false" />
             </div>

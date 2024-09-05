@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import projects from "../../data/projects";
 import ProjectDetails from "./ProjectDetails";
+import { useRouter, usePathname } from "next/navigation";
 
 const ProjectList = ({ searchQuery = "" }) => {
   const [selectedProjectId, setSelectedProjectId] = useState(null);
@@ -9,6 +10,20 @@ const ProjectList = ({ searchQuery = "" }) => {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
+  const router = useRouter()
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const matchedProject = projects.find((project) =>
+      pathname.includes(`${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`)
+    );
+    if (matchedProject) {
+      setSelectedProjectId(matchedProject.id);
+    }
+  }, [pathname]);
+  // const navigateToPost = (postId) => {
+  //   router.push(`/projects/${postId}`);
+  // };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,9 +39,13 @@ const ProjectList = ({ searchQuery = "" }) => {
     };
   }, []);
 
-  const handleProjectClick = (id) => {
-    setSelectedProjectId(id === selectedProjectId ? null : id);
-  };
+  const handleProjectClick = (id, name) => {
+    setSelectedProjectId(id === selectedProjectId ? null : id)
+    if (id !== selectedProjectId) {
+      let formattedName = name.toLowerCase().replace(/\s+/g, '-');
+      router.push(`/projects/${formattedName}-${id}`)
+    }
+  }
 
   const handleMouseDown = (e) => {
     const selectedDiv = e.target.closest(".project-item.selected");
@@ -75,10 +94,11 @@ const ProjectList = ({ searchQuery = "" }) => {
             className={`project-item ${
               selectedProjectId === project.id ? "selected" : ""
             }`}
+            // onClick={() => handleProjectClick(project.id, project.name)}
           >
             <div
               className="main-image"
-              onClick={() => handleProjectClick(project.id)}
+              onClick={() => handleProjectClick(project.id, project.name)}
             >
               <img src={project.image} alt={project.name} draggable="false" />
             </div>

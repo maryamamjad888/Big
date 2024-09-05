@@ -59,7 +59,7 @@ function MyNavbar({ onSearchChange }) {
   const handleSuggestionClick = (suggestion) => {
     setPlaceholder(suggestion);
     onSearchChange(suggestion);
-    setIsFocused(false); // Hide suggestions after selection
+    setIsFocused(false);
   };
 
   useEffect(() => {
@@ -87,7 +87,7 @@ function MyNavbar({ onSearchChange }) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link
-                href="#landscape"
+                href=""
                 onClick={() => handleNavClick("landscape")}
                 className="nav-link"
               >
@@ -97,7 +97,7 @@ function MyNavbar({ onSearchChange }) {
                 LANDSCAPE
               </Nav.Link>
               <Nav.Link
-                href="#engineering"
+                href=""
                 onClick={() => handleNavClick("engineering")}
                 className="nav-link"
               >
@@ -107,7 +107,7 @@ function MyNavbar({ onSearchChange }) {
                 ENGINEERING
               </Nav.Link>
               <Nav.Link
-                href="#architecture"
+                href=""
                 onClick={() => handleNavClick("architecture")}
                 className="nav-link"
               >
@@ -117,7 +117,7 @@ function MyNavbar({ onSearchChange }) {
                 ARCHITECTURE
               </Nav.Link>
               <Nav.Link
-                href="#planning"
+                href=""
                 onClick={() => handleNavClick("planning")}
                 className="nav-link"
               >
@@ -127,7 +127,7 @@ function MyNavbar({ onSearchChange }) {
                 PLANNING
               </Nav.Link>
               <Nav.Link
-                href="#products"
+                href=""
                 onClick={() => handleNavClick("products")}
                 className="nav-link"
               >

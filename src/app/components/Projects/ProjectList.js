@@ -81,11 +81,7 @@ const ProjectList = ({ searchQuery = "" }) => {
             )}
             <div className="side-details">
               <div className="project-icon">
-                <img
-                  src={project.icon}
-                  alt={`${project.name} icon`}
-                  draggable="false"
-                />
+                <img src={project.icon} alt={`${project.name} icon`} draggable="false" />
               </div>
               <div className="project-info">
                 <h3>{project.name}</h3>

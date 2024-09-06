@@ -2,15 +2,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import projects from "../../data/projects";
 import ProjectDetails from "./ProjectDetails";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const ProjectList = ({ searchQuery = "" }) => {
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [isScaled, setIsScaled] = useState(false);
   const isDragging = useRef(false);
+  const projectRef = useRef(null)
   const startX = useRef(0);
   const scrollLeft = useRef(0);
-  const router = useRouter();
   const pathname = usePathname();
   const [parentFilter, setParentFilter] = useState("");
   const [subMenuFilter, setSubMenuFilter] = useState("");
@@ -20,6 +20,7 @@ const ProjectList = ({ searchQuery = "" }) => {
     setParentFilter(parent || "");
     setSubMenuFilter(subMenu || "");
   }, [searchQuery]);
+
   useEffect(() => {
     const matchedProject = projects.find((project) =>
       pathname.includes(
@@ -28,11 +29,17 @@ const ProjectList = ({ searchQuery = "" }) => {
     );
     if (matchedProject) {
       setSelectedProjectId(matchedProject.id);
+
+      setTimeout(() => {
+        if (projectRef.current) {
+            projectRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+        }
+      }, 100);
     }
-  }, [pathname]);
-  // const navigateToPost = (postId) => {
-  //   router.push(`/projects/${postId}`);
-  // };
+  }, [pathname])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +62,6 @@ const ProjectList = ({ searchQuery = "" }) => {
       const formattedName = name.toLowerCase().replace(/\s+/g, "-");
       const newUrl = `/projects/${formattedName}-${id}`;
 
-      // Use replaceState to change the URL without page refresh or scrolling
       window.history.replaceState(null, "", newUrl);
     }
   };
@@ -107,6 +113,7 @@ const ProjectList = ({ searchQuery = "" }) => {
         filteredProjects.map((project) => (
           <div
             key={project.id}
+            ref={selectedProjectId === project.id ? projectRef : null}
             className={`project-item ${
               selectedProjectId === project.id ? "selected" : ""
             }`}

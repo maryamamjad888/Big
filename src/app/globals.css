@@ -156,6 +156,7 @@ a {
   align-items: center;
   gap: 5px;
   position: relative;
+  cursor: pointer;
 }
 
 .landscape-sub {
@@ -170,7 +171,9 @@ a {
   padding: 10px 0;
   z-index: 10;
 }
-
+.landscape-sub li {
+  position: relative;
+}
 .engineering-sub {
   justify-content: center;
   background-color: white;
@@ -183,7 +186,9 @@ a {
   padding: 10px 0;
   z-index: 10;
 }
-
+.engineering-sub li {
+  position: relative;
+}
 .architecture-sub {
   justify-content: center;
   background-color: white;
@@ -196,7 +201,9 @@ a {
   padding: 10px 0;
   z-index: 10;
 }
-
+.architecture-sub li {
+  position: relative;
+}
 .planning-sub {
   justify-content: center;
   background-color: white;
@@ -209,7 +216,9 @@ a {
   padding: 10px 0;
   z-index: 10;
 }
-
+.planning-sub li {
+  position: relative;
+}
 .products-sub {
   justify-content: center;
   background-color: white;
@@ -222,7 +231,9 @@ a {
   padding: 10px 0;
   z-index: 10;
 }
-
+.products-sub li {
+  position: relative;
+}
 .navbar-wrapper .active-dot {
   position: absolute;
   width: 5px;

@@ -12,7 +12,14 @@ const ProjectList = ({ searchQuery = "" }) => {
   const scrollLeft = useRef(0);
   const router = useRouter()
   const pathname = usePathname();
-
+  const [parentFilter, setParentFilter] = useState("");
+  const [subMenuFilter, setSubMenuFilter] = useState("");
+  
+  useEffect(() => {
+    const [parent, subMenu] = searchQuery.split(",");
+    setParentFilter(parent || "");
+    setSubMenuFilter(subMenu || "");
+  }, [searchQuery]);
   useEffect(() => {
     const matchedProject = projects.find((project) =>
       pathname.includes(`${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`)
@@ -72,10 +79,13 @@ const ProjectList = ({ searchQuery = "" }) => {
   };
 
   const filteredProjects = projects.filter((project) => {
-    const searchLower = searchQuery.toLowerCase().trim();
+    const searchLower = (parentFilter || "").toLowerCase().trim();
+    const subMenuLower = (subMenuFilter || "").toLowerCase().trim();
+    const keywordsLower = project.keywords.toLowerCase();
+  
     return (
-      project.location.toLowerCase().includes(searchLower) ||
-      (project.keywords && project.keywords.toLowerCase().includes(searchLower))
+      keywordsLower.includes(searchLower) &&
+      (!subMenuLower || keywordsLower.includes(subMenuLower))
     );
   });
 

@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
-import React from "react";
+
+import React, { useState } from "react";
+
 import Navbar from "../../components/Navbar/Navbar";
 import ProjectList from "../../components/Projects/ProjectList";
 import Footer from "@/app/components/Footer/Footer";

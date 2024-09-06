@@ -10,11 +10,11 @@ const ProjectList = ({ searchQuery = "" }) => {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
-  const router = useRouter()
+  const router = useRouter();
   const pathname = usePathname();
   const [parentFilter, setParentFilter] = useState("");
   const [subMenuFilter, setSubMenuFilter] = useState("");
-  
+
   useEffect(() => {
     const [parent, subMenu] = searchQuery.split(",");
     setParentFilter(parent || "");
@@ -22,7 +22,9 @@ const ProjectList = ({ searchQuery = "" }) => {
   }, [searchQuery]);
   useEffect(() => {
     const matchedProject = projects.find((project) =>
-      pathname.includes(`${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`)
+      pathname.includes(
+        `${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`
+      )
     );
     if (matchedProject) {
       setSelectedProjectId(matchedProject.id);
@@ -47,12 +49,16 @@ const ProjectList = ({ searchQuery = "" }) => {
   }, []);
 
   const handleProjectClick = (id, name) => {
-    setSelectedProjectId(id === selectedProjectId ? null : id)
+    setSelectedProjectId(id === selectedProjectId ? null : id);
+
     if (id !== selectedProjectId) {
-      let formattedName = name.toLowerCase().replace(/\s+/g, '-');
-      router.push(`/projects/${formattedName}-${id}`)
+      const formattedName = name.toLowerCase().replace(/\s+/g, "-");
+      const newUrl = `/projects/${formattedName}-${id}`;
+
+      // Use replaceState to change the URL without page refresh or scrolling
+      window.history.replaceState(null, "", newUrl);
     }
-  }
+  };
 
   const handleMouseDown = (e) => {
     const selectedDiv = e.target.closest(".project-item.selected");
@@ -82,7 +88,7 @@ const ProjectList = ({ searchQuery = "" }) => {
     const searchLower = (parentFilter || "").toLowerCase().trim();
     const subMenuLower = (subMenuFilter || "").toLowerCase().trim();
     const keywordsLower = project.keywords.toLowerCase();
-  
+
     return (
       keywordsLower.includes(searchLower) &&
       (!subMenuLower || keywordsLower.includes(subMenuLower))
@@ -104,11 +110,11 @@ const ProjectList = ({ searchQuery = "" }) => {
             className={`project-item ${
               selectedProjectId === project.id ? "selected" : ""
             }`}
-            onClick={() => handleProjectClick(project.id, project.name)}
+            // onClick={() => handleProjectClick(project.id, project.name)}
           >
             <div
               className="main-image"
-              // onClick={() => handleProjectClick(project.id, project.name)}
+              onClick={() => handleProjectClick(project.id, project.name)}
             >
               <img src={project.image} alt={project.name} draggable="false" />
             </div>

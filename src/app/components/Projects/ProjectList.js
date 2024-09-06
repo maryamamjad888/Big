@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import projects from "../../data/projects";
 import ProjectDetails from "./ProjectDetails";
+import { useRouter, usePathname } from "next/navigation";
 
 const ProjectList = ({ searchQuery = "" }) => {
   const [selectedProjectId, setSelectedProjectId] = useState(null);
@@ -9,6 +10,27 @@ const ProjectList = ({ searchQuery = "" }) => {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
+  const router = useRouter()
+  const pathname = usePathname();
+  const [parentFilter, setParentFilter] = useState("");
+  const [subMenuFilter, setSubMenuFilter] = useState("");
+  
+  useEffect(() => {
+    const [parent, subMenu] = searchQuery.split(",");
+    setParentFilter(parent || "");
+    setSubMenuFilter(subMenu || "");
+  }, [searchQuery]);
+  useEffect(() => {
+    const matchedProject = projects.find((project) =>
+      pathname.includes(`${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`)
+    );
+    if (matchedProject) {
+      setSelectedProjectId(matchedProject.id);
+    }
+  }, [pathname]);
+  // const navigateToPost = (postId) => {
+  //   router.push(`/projects/${postId}`);
+  // };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,9 +46,13 @@ const ProjectList = ({ searchQuery = "" }) => {
     };
   }, []);
 
-  const handleProjectClick = (id) => {
-    setSelectedProjectId(id === selectedProjectId ? null : id);
-  };
+  const handleProjectClick = (id, name) => {
+    setSelectedProjectId(id === selectedProjectId ? null : id)
+    if (id !== selectedProjectId) {
+      let formattedName = name.toLowerCase().replace(/\s+/g, '-');
+      router.push(`/projects/${formattedName}-${id}`)
+    }
+  }
 
   const handleMouseDown = (e) => {
     const selectedDiv = e.target.closest(".project-item.selected");
@@ -52,12 +78,16 @@ const ProjectList = ({ searchQuery = "" }) => {
     isDragging.current = false;
   };
 
-  const filteredProjects = projects.filter((project) =>
-    project.location
-      .toLowerCase()
-      .trim()
-      .includes(searchQuery.toLowerCase().trim())
-  );
+  const filteredProjects = projects.filter((project) => {
+    const searchLower = (parentFilter || "").toLowerCase().trim();
+    const subMenuLower = (subMenuFilter || "").toLowerCase().trim();
+    const keywordsLower = project.keywords.toLowerCase();
+  
+    return (
+      keywordsLower.includes(searchLower) &&
+      (!subMenuLower || keywordsLower.includes(subMenuLower))
+    );
+  });
 
   return (
     <div
@@ -74,10 +104,11 @@ const ProjectList = ({ searchQuery = "" }) => {
             className={`project-item ${
               selectedProjectId === project.id ? "selected" : ""
             }`}
+            onClick={() => handleProjectClick(project.id, project.name)}
           >
             <div
               className="main-image"
-              onClick={() => handleProjectClick(project.id)}
+              // onClick={() => handleProjectClick(project.id, project.name)}
             >
               <img src={project.image} alt={project.name} draggable="false" />
             </div>

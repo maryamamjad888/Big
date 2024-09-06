@@ -39,7 +39,10 @@
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
 }
-
+li {
+  list-style: none;
+  color: #6b6b6b;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -130,6 +133,8 @@ a {
   width: 100%;
   transition: all 0.3s ease;
   padding: 11px 30px;
+  margin-bottom: 20px;
+  background-color: white;
 }
 
 .navbar-wrapper.sticky {
@@ -151,8 +156,84 @@ a {
   align-items: center;
   gap: 5px;
   position: relative;
+  cursor: pointer;
 }
 
+.landscape-sub {
+  justify-content: center;
+  background-color: white;
+  position: absolute;
+  display: flex;
+  top: 100%;
+
+  width: 700px;
+  gap: 40px;
+  padding: 10px 0;
+  z-index: 10;
+}
+.landscape-sub li {
+  position: relative;
+}
+.engineering-sub {
+  justify-content: center;
+  background-color: white;
+  position: absolute;
+  display: flex;
+  top: 100%;
+  left: -150%;
+  width: 700px;
+  gap: 40px;
+  padding: 10px 0;
+  z-index: 10;
+}
+.engineering-sub li {
+  position: relative;
+}
+.architecture-sub {
+  justify-content: center;
+  background-color: white;
+  position: absolute;
+  display: flex;
+  top: 100%;
+  left: -320%;
+  width: 900px;
+  gap: 40px;
+  padding: 10px 0;
+  z-index: 10;
+}
+.architecture-sub li {
+  position: relative;
+}
+.planning-sub {
+  justify-content: center;
+  background-color: white;
+  position: absolute;
+  display: flex;
+  top: 100%;
+  left: -550%;
+  width: 700px;
+  gap: 40px;
+  padding: 10px 0;
+  z-index: 10;
+}
+.planning-sub li {
+  position: relative;
+}
+.products-sub {
+  justify-content: center;
+  background-color: white;
+  position: absolute;
+  display: flex;
+  top: 100%;
+  left: -650%;
+  width: 700px;
+  gap: 40px;
+  padding: 10px 0;
+  z-index: 10;
+}
+.products-sub li {
+  position: relative;
+}
 .navbar-wrapper .active-dot {
   position: absolute;
   width: 5px;
@@ -424,11 +505,13 @@ a {
   left: 47%;
   margin: 0;
   padding: 0;
+  z-index: 999;
 }
 
 .suggestions li {
   padding-top: 5px;
   list-style: none;
+  cursor: pointer !important;
 }
 .custom-search-input::placeholder {
   color: #6b6b6b;

@@ -2,13 +2,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import projects from "../../data/projects";
 import ProjectDetails from "./ProjectDetails";
-import { usePathname } from "next/navigation";
+import { usePathname } from "next/navigation"; 
 
 const ProjectList = ({ searchQuery = "" }) => {
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [isScaled, setIsScaled] = useState(false);
   const isDragging = useRef(false);
-  const projectRef = useRef(null)
+  const projectRef = useRef(null);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
   const pathname = usePathname();
@@ -32,37 +32,59 @@ const ProjectList = ({ searchQuery = "" }) => {
 
       setTimeout(() => {
         if (projectRef.current) {
-            projectRef.current.scrollIntoView({
+          projectRef.current.scrollIntoView({
             behavior: "smooth",
             block: "center",
+            inline: "center"
           });
         }
       }, 100);
     }
-  }, [pathname])
+  }, [pathname]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScaled(true);
-      clearTimeout(window.scaleTimeout);
-      window.scaleTimeout = setTimeout(() => setIsScaled(false), 600);
+    const handlePopState = () => {
+      const urlParts = window.location.pathname.split("/");
+      const lastPart = urlParts[urlParts.length - 1];
+      
+      if (lastPart === "projects") {
+        setSelectedProjectId(null);
+      } else {
+        const matchedProject = projects.find((project) =>
+          lastPart.includes(`${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`)
+        );
+        if (matchedProject) {
+          setSelectedProjectId(matchedProject.id);
+        }
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("popstate", handlePopState);
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(window.scaleTimeout);
+      window.removeEventListener("popstate", handlePopState);
     };
-  }, []);
+  }, [projects]);
 
   const handleProjectClick = (id, name) => {
-    setSelectedProjectId(id === selectedProjectId ? null : id);
-
-    if (id !== selectedProjectId) {
+    if (id === selectedProjectId) {
+      setSelectedProjectId(null);
+      window.history.pushState(null, "", "/");
+    } else {
+      setSelectedProjectId(id);
       const formattedName = name.toLowerCase().replace(/\s+/g, "-");
       const newUrl = `/projects/${formattedName}-${id}`;
+      window.history.pushState(null, "", newUrl);
 
-      window.history.replaceState(null, "", newUrl);
+      setTimeout(() => {
+        if (projectRef.current) {
+          projectRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+            inline: "center"
+          });
+        }
+      }, 100);
     }
   };
 
@@ -117,7 +139,6 @@ const ProjectList = ({ searchQuery = "" }) => {
             className={`project-item ${
               selectedProjectId === project.id ? "selected" : ""
             }`}
-            // onClick={() => handleProjectClick(project.id, project.name)}
           >
             <div
               className="main-image"

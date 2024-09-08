@@ -47,8 +47,8 @@ const ProjectList = ({ searchQuery = "" }) => {
       const urlParts = window.location.pathname.split("/");
       const lastPart = urlParts[urlParts.length - 1];
       
-      if (lastPart === "projects") {
-        setSelectedProjectId(null);
+      if (window.location.pathname === "/") {
+        setSelectedProjectId(1);
       } else {
         const matchedProject = projects.find((project) =>
           lastPart.includes(`${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`)

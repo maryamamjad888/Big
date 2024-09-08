@@ -549,7 +549,7 @@ a {
   font-size: 12px;
   color: #6b6b6b;
   gap: 40px;
-  height: 320px;
+  height: auto;
   justify-content: center;
 }
 
@@ -622,4 +622,62 @@ a {
   font-size: 12px;
   color: #000000;
   font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .project-item {
+    flex-direction: column;
+  }
+  .side-details {
+    text-align: unset;
+    margin-right: 0;
+    margin-top: 0;
+    position: unset;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+  }
+  .project-info h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 9px;
+    width: 173px;
+  }
+  .project-info p {
+    font-size: 10px;
+    margin: 0;
+  }
+  .side-details .project-icon img {
+    width: 30px;
+    height: 30px;
+  }
+
+
+
+
+
+  .footer {
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .email-list.show {
+    opacity: 1;
+    max-height: fit-content;
+    text-align: center;
+  }
+  .email,
+  .offices,
+  .social,
+  .legal {
+    width: 100%;
+  }
+
+  .footer ul {
+    padding-top: 20px;
+  }
+  .footer .footer-toggle {
+    justify-content: center;
+  }
 }

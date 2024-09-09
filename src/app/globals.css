@@ -291,6 +291,7 @@ a {
 .custom-form-search {
   position: absolute;
   right: 0;
+  justify-content: center;
 }
 
 .custom-form-search button {
@@ -623,15 +624,75 @@ a {
   color: #000000;
   font-weight: 400;
 }
-
-@media (max-width: 768px) {
+@media (max-width: 991px) {
+  .navbar-toggler {
+    border: 0 !important;
+    box-shadow: none !important;
+    z-index: 10;
+  }
+  .navbar-toggler-icon {
+    background-image: url(../../public/images/filter.svg) !important;
+    width: 1.3em;
+    height: 1.7em;
+  }
+  .navbar-collapse {
+    position: absolute;
+    right: -220px;
+    /* display: none; */
+    pointer-events: none;
+    padding-left: 20px;
+    width: 220px;
+    background-color: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 30px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column-reverse;
+    transition: transform 0.4s ease, right 0.4s ease;
+    transform: translateX(100%);
+    z-index: 9;
+  }
+  .collapse:not(.show) {
+    display: none;
+  }
+  .navbar-collapse.show {
+    pointer-events: all;
+    display: flex;
+    translate: none;
+    rotate: none;
+    scale: none;
+    transform: translate(0px, 0px);
+    transform: translateX(0);
+    top: 10px;
+    /* flex-direction: column; */
+    z-index: 9;
+    justify-content: flex-end;
+    right: 0;
+  }
+  .navbar-nav {
+    position: unset;
+  }
+  .navbar-wrapper .nav-link {
+    font-size: 14px;
+  }
+  .custom-form-search {
+    position: unset;
+    justify-content: start;
+  }
+  .btn {
+    padding-left: 0 !important;
+  }
   .project-item {
     flex-direction: column;
   }
   .side-details {
     text-align: unset;
     margin-right: 0;
-    margin-top: 0;
+    margin-top: 10px;
     position: unset;
     display: flex;
     align-items: center;
@@ -651,7 +712,29 @@ a {
     width: 30px;
     height: 30px;
   }
-
+  /* .project-item.selected .main-image img {
+    width: 215px;
+    height: 215px;
+    transform: scale(1);
+    transition: transform 0.8s ease-in-out, width 0.8s ease-in-out;
+  }
+  
+  .project-item.selected .side-details {
+    margin-right: 850px;
+    transition: margin-right 0.8s ease-in-out;
+    margin-top: -150px;
+    transition: margin-top 0.8s ease-in-out;
+  }
+  .project-item.selected .side-details .project-info h3 {
+    font-size: 17px;
+  }
+  .project-item.selected .side-details .project-info p {
+    font-size: 13px;
+  }
+  .project-item.selected .project-details-wrapper {
+    margin-left: 20px;
+    transition: margin-left 0.8s ease-in-out;
+  } */
 
 
 
@@ -680,4 +763,4 @@ a {
   .footer .footer-toggle {
     justify-content: center;
   }
-}
+} 

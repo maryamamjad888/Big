@@ -733,6 +733,8 @@ a {
     width: 340px;
     transform: translateX(-100px);
     transition: transform 1.5s ease;
+    /* transform: none;
+    transition: none; */
   }
   .project-item.selected .side-details {
     margin-right: 0;

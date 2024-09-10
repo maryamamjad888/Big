@@ -243,7 +243,7 @@ function MyNavbar({ onSearchChange }) {
                 )}
               </div>
             </Nav>
-            <Form className="custom-form-search d-flex justify-content-end">
+            <Form className="custom-form-search d-flex">
               <Button>
                 <svg
                   width="14"

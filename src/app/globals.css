@@ -630,6 +630,7 @@ a {
     border: 0 !important;
     box-shadow: none !important;
     z-index: 10;
+    padding: 0 !important;
   }
 
   .navbar-toggler-icon {
@@ -650,7 +651,7 @@ a {
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-left: 10px;
+    padding-left: 20px;
     min-height: 100vh;
     display: flex;
     flex-direction: column-reverse;
@@ -673,19 +674,19 @@ a {
     /* flex-direction: column; */
     z-index: 9;
     justify-content: flex-end;
-    right: -25px;
+    right: -30px;
   }
   .navbar-nav {
     position: unset;
     align-items: flex-start;
-    gap: 20px;
+    gap: 10px;
     margin-top: 5px;
   }
   .custom-form-search .form-control {
     width: 60%;
   }
   .navbar-wrapper .nav-link {
-    font-size: 14px;
+    font-size: 12px;
     flex-direction: column;
     align-items: flex-start;
     color: #000000;
@@ -701,7 +702,7 @@ a {
     justify-content: start;
   }
   .custom-form-search input::placeholder {
-    font-size: 14px;
+    font-size: 12px;
   }
   .custom-form-search button svg {
     width: 1rem;

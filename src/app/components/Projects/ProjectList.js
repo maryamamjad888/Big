@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import projects from "../../data/projects";
 import ProjectDetails from "./ProjectDetails";
-import { usePathname } from "next/navigation"; 
+import { usePathname } from "next/navigation";
 
 const ProjectList = ({ searchQuery = "" }) => {
   const [selectedProjectId, setSelectedProjectId] = useState(null);
@@ -35,7 +35,7 @@ const ProjectList = ({ searchQuery = "" }) => {
           projectRef.current.scrollIntoView({
             behavior: "smooth",
             block: "center",
-            inline: "center"
+            inline: "center",
           });
         }
       }, 100);
@@ -46,12 +46,14 @@ const ProjectList = ({ searchQuery = "" }) => {
     const handlePopState = () => {
       const urlParts = window.location.pathname.split("/");
       const lastPart = urlParts[urlParts.length - 1];
-      
+
       if (window.location.pathname === "/") {
         setSelectedProjectId(1);
       } else {
         const matchedProject = projects.find((project) =>
-          lastPart.includes(`${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`)
+          lastPart.includes(
+            `${project.name.toLowerCase().replace(/\s+/g, "-")}-${project.id}`
+          )
         );
         if (matchedProject) {
           setSelectedProjectId(matchedProject.id);
@@ -81,7 +83,7 @@ const ProjectList = ({ searchQuery = "" }) => {
           projectRef.current.scrollIntoView({
             behavior: "smooth",
             block: "center",
-            inline: "center"
+            inline: "center",
           });
         }
       }, 100);

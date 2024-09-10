@@ -828,5 +828,6 @@ a {
   }
   .footer .footer-toggle {
     justify-content: center;
+    /* margin: 10px; */
   }
 }

@@ -291,7 +291,7 @@ a {
 .custom-form-search {
   position: absolute;
   right: 0;
-  justify-content: center;
+  justify-content: end;
 }
 
 .custom-form-search button {
@@ -452,7 +452,7 @@ a {
   padding-bottom: 40px;
 }
 .project-item:active {
-  cursor: grabbing; /* Change cursor when dragging */
+  cursor: grabbing;
 }
 
 .main-image img {
@@ -462,7 +462,6 @@ a {
   cursor: pointer;
 }
 .project-item.selected .main-image img {
-  /* margin-top: 120px; */
   width: 460px;
   transform: scale(1.2);
   transition: transform 0.8s ease-in-out, width 0.8s ease-in-out;
@@ -505,10 +504,14 @@ a {
   font-size: 11px;
   color: #8e8d8d;
   font-weight: 250;
-  left: 47%;
+  left: 45%;
   margin: 0;
   padding: 0;
   z-index: 999;
+  background-color: #ffffff;
+  height: 100vh;
+  width: 220px;
+  padding-left: 10px;
 }
 
 .suggestions li {
@@ -544,7 +547,7 @@ a {
 .footer {
   padding: 20px 0;
   display: flex;
-  font-family: "__Inter_36bd41", "__Inter_Fallback_36bd41";
+  font-family: "_Inter_36bd41", "_Inter_Fallback_36bd41";
   margin: 100px auto 0 auto;
   width: 75%;
   text-transform: uppercase;
@@ -621,37 +624,54 @@ a {
   border: 0;
   outline: 0;
   text-transform: uppercase;
-  font-family: "__Inter_36bd41", "__Inter_Fallback_36bd41";
+  font-family: "_Inter_36bd41", "_Inter_Fallback_36bd41";
   font-size: 12px;
   color: #000000;
   font-weight: 400;
+}
+@media (max-width: 1230px) {
+  .project-item.selected .main-image img {
+    width: 370px;
+  }
+}
+@media (max-width: 1100px) {
+  .navbar-nav {
+    gap: 10%;
+  }
+}
+@media (max-width: 880px) {
+  .navbar-wrapper {
+    margin-bottom: 0;
+    padding: 0 20px;
+  }
 }
 @media (max-width: 991px) {
   .navbar-toggler {
     border: 0 !important;
     box-shadow: none !important;
-    z-index: 10;
+    z-index: 12;
+    padding: 0 !important;
   }
 
   .navbar-toggler-icon {
-    background-image: url(../../public/images/filter.svg) !important;
+    background-image: url(../../public/images/dash.svg) !important;
     width: 1.3em;
     height: 1.7em;
+  }
+  .navbar-toggler.collapsed .navbar-toggler-icon {
+    background-image: url(../../public/images/filter.svg) !important;
   }
   .navbar-collapse {
     position: absolute;
     right: -220px;
     /* display: none; */
     pointer-events: none;
-    padding-left: 20px;
     width: 220px;
     background-color: #ffffff;
-    padding-top: 20px;
-    padding-bottom: 40px;
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-bottom: 30px;
+    padding-left: 20px;
     min-height: 100vh;
     display: flex;
     flex-direction: column-reverse;
@@ -672,19 +692,41 @@ a {
     transform: translateX(0);
     top: 10px;
     /* flex-direction: column; */
-    z-index: 9;
+    z-index: 11;
     justify-content: flex-end;
-    right: 0;
+    right: -30px;
   }
   .navbar-nav {
     position: unset;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 5px;
+  }
+  .custom-form-search .form-control {
+    width: 60%;
   }
   .navbar-wrapper .nav-link {
-    font-size: 14px;
+    font-size: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #000000;
+  }
+  .navbar-wrapper .nav-link .active-dot {
+    display: none;
+  }
+  .navbar-wrapper .nav-link ul .active-dot {
+    display: block;
   }
   .custom-form-search {
     position: unset;
     justify-content: start;
+  }
+  .custom-form-search input::placeholder {
+    font-size: 12px;
+  }
+  .custom-form-search button svg {
+    width: 1rem;
+    height: 1rem;
   }
   .btn {
     padding-left: 0 !important;
@@ -701,7 +743,7 @@ a {
     align-items: center;
     gap: 13px;
     bottom: 0;
-    z-index: 99;
+    z-index: 10;
   }
   .project-item .main-image img {
     width: 340px;
@@ -730,6 +772,16 @@ a {
   .main-image img {
     position: relative;
   }
+  .landscape-sub,
+  .engineering-sub,
+  .architecture-sub,
+  .planning-sub,
+  .products-sub {
+    position: unset;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
   .project-item.selected .main-image img {
     width: 340px;
     transform: translateX(-100px);
@@ -749,7 +801,6 @@ a {
     font-size: 10px;
   }
   .project-item.selected .project-details-wrapper {
-    /* margin-left: 20px; */
     margin-left: 0; /* Reset the left margin to prevent shifting */
     transition: none; /* Remove the transition effect */
   }

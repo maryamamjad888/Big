@@ -749,7 +749,6 @@ a {
     font-size: 10px;
   }
   .project-item.selected .project-details-wrapper {
-    /* margin-left: 20px; */
     margin-left: 0; /* Reset the left margin to prevent shifting */
     transition: none; /* Remove the transition effect */
   }

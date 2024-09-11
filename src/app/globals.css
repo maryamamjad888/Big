@@ -135,6 +135,8 @@ a {
   padding: 11px 30px;
   margin-bottom: 20px;
   background-color: white;
+  position: relative;
+  z-index: 99;
 }
 
 .navbar-wrapper.sticky {
@@ -628,6 +630,16 @@ a {
   font-size: 12px;
   color: #000000;
   font-weight: 400;
+}
+.project-list.fade-out {
+  transform: translateY(-200%);
+  opacity: 0;
+  transition: transform 0.7s ease-out, opacity 0.9s ease-in;
+}
+.project-list.fade-in {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.7s ease-out, opacity 0.9s ease-in;
 }
 @media (max-width: 1230px) {
   .project-item.selected .main-image img {

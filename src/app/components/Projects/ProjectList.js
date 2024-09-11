@@ -14,11 +14,15 @@ const ProjectList = ({ searchQuery = "" }) => {
   const pathname = usePathname();
   const [parentFilter, setParentFilter] = useState("");
   const [subMenuFilter, setSubMenuFilter] = useState("");
+  const [isAnimating, setIsAnimating] = useState(false)
 
   useEffect(() => {
     const [parent, subMenu] = searchQuery.split(",");
     setParentFilter(parent || "");
     setSubMenuFilter(subMenu || "");
+
+    setIsAnimating(true)
+    setTimeout(() => setIsAnimating(false), 500);
   }, [searchQuery]);
 
   useEffect(() => {
@@ -127,7 +131,7 @@ const ProjectList = ({ searchQuery = "" }) => {
 
   return (
     <div
-      className={`project-list ${isScaled ? "scaled" : ""}`}
+      className={`project-list ${isScaled ? "scaled" : ""} ${isAnimating ? "fade-out" : "fade-in"}`}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUpOrLeave}

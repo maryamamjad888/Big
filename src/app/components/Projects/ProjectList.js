@@ -21,8 +21,10 @@ const ProjectList = ({ searchQuery = "" }) => {
     setParentFilter(parent || "");
     setSubMenuFilter(subMenu || "");
 
-    setIsAnimating(true)
-    setTimeout(() => setIsAnimating(false), 500);
+    setTimeout(() => {
+      setIsAnimating(true);
+      setTimeout(() => setIsAnimating(false), 500);
+    }, 0);
   }, [searchQuery]);
 
   useEffect(() => {
@@ -42,6 +44,8 @@ const ProjectList = ({ searchQuery = "" }) => {
             inline: "center",
           });
         }
+        setIsAnimating(true);
+        setTimeout(() => setIsAnimating(false), 500);
       }, 100);
     }
   }, [pathname]);

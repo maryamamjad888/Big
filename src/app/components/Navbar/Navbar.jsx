@@ -45,12 +45,13 @@ function MyNavbar({ onSearchChange }) {
       onSearchChange("");
     } else {
       setActiveFilter(keyword);
+      setActiveSubMenu("");
       onSearchChange(keyword);
     }
   };
   const handleSubMenuClick = (parentFilter, subMenuOption, e) => {
-    e.stopPropagation(); 
-    
+    e.stopPropagation();
+
     if (activeSubMenu === subMenuOption) {
       setActiveSubMenu("");
       setActiveFilter("");
@@ -58,10 +59,10 @@ function MyNavbar({ onSearchChange }) {
     } else {
       setActiveFilter(parentFilter);
       setActiveSubMenu(subMenuOption);
-      onSearchChange(`${parentFilter},${subMenuOption}`); 
+      onSearchChange(`${parentFilter},${subMenuOption}`);
     }
   };
-  
+
   const handleFocus = () => {
     setIsFocused(true);
   };
@@ -102,26 +103,57 @@ function MyNavbar({ onSearchChange }) {
             <Nav className="me-auto">
               <div
                 onClick={() => handleNavClick("landscape")}
-                className={`nav-link ${activeFilter === "landscape" && !activeSubMenu ? "active" : ""}`}
+                className={`nav-link ${
+                  activeFilter === "landscape" && !activeSubMenu ? "active" : ""
+                }`}
               >
-                {!activeSubMenu && activeFilter === "landscape" && <span className="active-dot"></span>}
+                {!activeSubMenu && activeFilter === "landscape" && (
+                  <span className="active-dot"></span>
+                )}
                 LANDSCAPE
                 {activeFilter === "landscape" && (
-                  <ul className="landscape-sub" onClick={(e) => e.stopPropagation()}>
-                    <li onClick={(e) => handleSubMenuClick("landscape", "Public Realm", e)}>
-                    {activeSubMenu === "Public Realm" && <span className="active-dot"></span>}
+                  <ul
+                    className="landscape-sub"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("landscape", "Public Realm", e)
+                      }
+                    >
+                      {activeSubMenu === "Public Realm" && (
+                        <span className="active-dot"></span>
+                      )}
                       Public Realm
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("landscape", "Parks", e)}>
-                      {activeSubMenu === "Parks" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("landscape", "Parks", e)
+                      }
+                    >
+                      {activeSubMenu === "Parks" && (
+                        <span className="active-dot"></span>
+                      )}
                       Parks
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("landscape", "Gardens", e)}>
-                      {activeSubMenu === "Gardens" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("landscape", "Gardens", e)
+                      }
+                    >
+                      {activeSubMenu === "Gardens" && (
+                        <span className="active-dot"></span>
+                      )}
                       Gardens
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("landscape", "Terraces", e)}>
-                      {activeSubMenu === "Terraces" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("landscape", "Terraces", e)
+                      }
+                    >
+                      {activeSubMenu === "Terraces" && (
+                        <span className="active-dot"></span>
+                      )}
                       Terraces
                     </li>
                   </ul>
@@ -129,22 +161,49 @@ function MyNavbar({ onSearchChange }) {
               </div>
               <div
                 onClick={() => handleNavClick("engineering")}
-                className={`nav-link ${activeFilter === "engineering" && !activeSubMenu ? "active" : ""}`}
+                className={`nav-link ${
+                  activeFilter === "engineering" && !activeSubMenu
+                    ? "active"
+                    : ""
+                }`}
               >
-                {!activeSubMenu && activeFilter === "engineering" && <span className="active-dot"></span>}
+                {!activeSubMenu && activeFilter === "engineering" && (
+                  <span className="active-dot"></span>
+                )}
                 ENGINEERING
                 {activeFilter === "engineering" && (
-                  <ul className="engineering-sub" onClick={(e) => e.stopPropagation()}>
-                    <li onClick={(e) => handleSubMenuClick("engineering", "Structure", e)}>
-                    {activeSubMenu === "Structure" && <span className="active-dot"></span>}
+                  <ul
+                    className="engineering-sub"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("engineering", "Structure", e)
+                      }
+                    >
+                      {activeSubMenu === "Structure" && (
+                        <span className="active-dot"></span>
+                      )}
                       Structure
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("engineering", "Simulation", e)}>
-                    {activeSubMenu === "Simulation" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("engineering", "Simulation", e)
+                      }
+                    >
+                      {activeSubMenu === "Simulation" && (
+                        <span className="active-dot"></span>
+                      )}
                       Simulation
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("engineering", "Sustainability", e)}>
-                    {activeSubMenu === "Sustainability" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("engineering", "Sustainability", e)
+                      }
+                    >
+                      {activeSubMenu === "Sustainability" && (
+                        <span className="active-dot"></span>
+                      )}
                       Sustainability
                     </li>
                   </ul>
@@ -152,50 +211,119 @@ function MyNavbar({ onSearchChange }) {
               </div>
               <div
                 onClick={() => handleNavClick("architecture")}
-                className={`nav-link ${activeFilter === "architecture" && !activeSubMenu ? "active" : ""}`}
+                className={`nav-link ${
+                  activeFilter === "architecture" && !activeSubMenu
+                    ? "active"
+                    : ""
+                }`}
               >
-                {!activeSubMenu && activeFilter === "architecture" && <span className="active-dot"></span>}
+                {!activeSubMenu && activeFilter === "architecture" && (
+                  <span className="active-dot"></span>
+                )}
                 ARCHITECTURE
                 {activeFilter === "architecture" && (
-                  <ul className="architecture-sub" onClick={(e) => e.stopPropagation()}>
-                    <li onClick={(e) => handleSubMenuClick("architecture", "Culture", e)}>
-                    {activeSubMenu === "Culture" && <span className="active-dot"></span>}
+                  <ul
+                    className="architecture-sub"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("architecture", "Culture", e)
+                      }
+                    >
+                      {activeSubMenu === "Culture" && (
+                        <span className="active-dot"></span>
+                      )}
                       Culture
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("architecture", "Education", e)}>
-                    {activeSubMenu === "Education" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("architecture", "Education", e)
+                      }
+                    >
+                      {activeSubMenu === "Education" && (
+                        <span className="active-dot"></span>
+                      )}
                       Education
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("architecture", "Work", e)}>
-                    {activeSubMenu === "Work" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("architecture", "Work", e)
+                      }
+                    >
+                      {activeSubMenu === "Work" && (
+                        <span className="active-dot"></span>
+                      )}
                       Work
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("architecture", "Hospitality", e)}>
-                    {activeSubMenu === "Hospitality" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("architecture", "Hospitality", e)
+                      }
+                    >
+                      {activeSubMenu === "Hospitality" && (
+                        <span className="active-dot"></span>
+                      )}
                       Hospitality
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("architecture", "Residential", e)}>
-                    {activeSubMenu === "Residential" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("architecture", "Residential", e)
+                      }
+                    >
+                      {activeSubMenu === "Residential" && (
+                        <span className="active-dot"></span>
+                      )}
                       Residential
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("architecture", "Infrastructure", e)}>
-                    {activeSubMenu === "Infrastructure" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("architecture", "Infrastructure", e)
+                      }
+                    >
+                      {activeSubMenu === "Infrastructure" && (
+                        <span className="active-dot"></span>
+                      )}
                       Infrastructure
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("architecture", "Space", e)}>
-                    {activeSubMenu === "Space" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("architecture", "Space", e)
+                      }
+                    >
+                      {activeSubMenu === "Space" && (
+                        <span className="active-dot"></span>
+                      )}
                       Space
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("architecture", "Interiors", e)}>
-                    {activeSubMenu === "Interiors" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("architecture", "Interiors", e)
+                      }
+                    >
+                      {activeSubMenu === "Interiors" && (
+                        <span className="active-dot"></span>
+                      )}
                       Interiors
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("architecture", "Sports", e)}>
-                    {activeSubMenu === "Sports" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("architecture", "Sports", e)
+                      }
+                    >
+                      {activeSubMenu === "Sports" && (
+                        <span className="active-dot"></span>
+                      )}
                       Sports
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("architecture", "Health", e)}>
-                    {activeSubMenu === "Health" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("architecture", "Health", e)
+                      }
+                    >
+                      {activeSubMenu === "Health" && (
+                        <span className="active-dot"></span>
+                      )}
                       Health
                     </li>
                   </ul>
@@ -203,22 +331,45 @@ function MyNavbar({ onSearchChange }) {
               </div>
               <div
                 onClick={() => handleNavClick("planning")}
-                className={`nav-link ${activeFilter === "planning" && !activeSubMenu ? "active" : ""}`}
+                className={`nav-link ${
+                  activeFilter === "planning" && !activeSubMenu ? "active" : ""
+                }`}
               >
-                {!activeSubMenu && activeFilter === "planning" && <span className="active-dot"></span>}
+                {!activeSubMenu && activeFilter === "planning" && (
+                  <span className="active-dot"></span>
+                )}
                 PLANNING
                 {activeFilter === "planning" && (
-                  <ul className="planning-sub" onClick={(e) => e.stopPropagation()}>
-                    <li onClick={(e) => handleSubMenuClick("planning", "Campus", e)}>
-                    {activeSubMenu === "Campus" && <span className="active-dot"></span>}
+                  <ul
+                    className="planning-sub"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("planning", "Campus", e)
+                      }
+                    >
+                      {activeSubMenu === "Campus" && (
+                        <span className="active-dot"></span>
+                      )}
                       Campus
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("planning", "City", e)}>
-                    {activeSubMenu === "City" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) => handleSubMenuClick("planning", "City", e)}
+                    >
+                      {activeSubMenu === "City" && (
+                        <span className="active-dot"></span>
+                      )}
                       City
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("planning", "Region", e)}>
-                    {activeSubMenu === "Region" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("planning", "Region", e)
+                      }
+                    >
+                      {activeSubMenu === "Region" && (
+                        <span className="active-dot"></span>
+                      )}
                       Region
                     </li>
                   </ul>
@@ -228,29 +379,64 @@ function MyNavbar({ onSearchChange }) {
                 onClick={() => handleNavClick("products")}
                 className="nav-link"
               >
-                {!activeSubMenu && activeFilter === "products" && <span className="active-dot"></span>}
+                {!activeSubMenu && activeFilter === "products" && (
+                  <span className="active-dot"></span>
+                )}
                 PRODUCTS
                 {activeFilter === "products" && (
-                  <ul className="products-sub" onClick={(e) => e.stopPropagation()}>
-                    <li onClick={(e) => handleSubMenuClick("products", "Lighting", e)}>
-                    {activeSubMenu === "Lighting" && <span className="active-dot"></span>}
+                  <ul
+                    className="products-sub"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("products", "Lighting", e)
+                      }
+                    >
+                      {activeSubMenu === "Lighting" && (
+                        <span className="active-dot"></span>
+                      )}
                       Lighting
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("products", "Furniture", e)}>
-                    {activeSubMenu === "Furniture" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("products", "Furniture", e)
+                      }
+                    >
+                      {activeSubMenu === "Furniture" && (
+                        <span className="active-dot"></span>
+                      )}
                       Furniture
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("products", "Consumer products", e)}>
-                    {activeSubMenu === "Consumer products" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("products", "Consumer products", e)
+                      }
+                    >
+                      {activeSubMenu === "Consumer products" && (
+                        <span className="active-dot"></span>
+                      )}
                       Consumer products
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("products", "Mobility", e)}>
-                    {activeSubMenu === "Mobility" && <span className="active-dot"></span>}
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("products", "Mobility", e)
+                      }
+                    >
+                      {activeSubMenu === "Mobility" && (
+                        <span className="active-dot"></span>
+                      )}
                       Mobility
                     </li>
-                    <li onClick={(e) => handleSubMenuClick("products", "Installations", e)}>
-                    {activeSubMenu === "Installations" && <span className="active-dot"></span>}
-                    Installations
+                    <li
+                      onClick={(e) =>
+                        handleSubMenuClick("products", "Installations", e)
+                      }
+                    >
+                      {activeSubMenu === "Installations" && (
+                        <span className="active-dot"></span>
+                      )}
+                      Installations
                     </li>
                   </ul>
                 )}

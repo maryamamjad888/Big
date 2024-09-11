@@ -20,7 +20,7 @@ const ProjectList = ({ searchQuery = "" }) => {
     const [parent, subMenu] = searchQuery.split(",");
     setParentFilter(parent || "");
     setSubMenuFilter(subMenu || "");
-
+    window.scrollTo({ top: 0, behavior:'smooth' })
     setTimeout(() => {
       setIsAnimating(true);
       setTimeout(() => setIsAnimating(false), 500);

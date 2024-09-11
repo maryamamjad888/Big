@@ -173,9 +173,7 @@ a {
   padding: 10px 0;
   z-index: 10;
 }
-.landscape-sub li {
-  position: relative;
-}
+
 .engineering-sub {
   justify-content: center;
   background-color: white;
@@ -188,7 +186,12 @@ a {
   padding: 10px 0;
   z-index: 10;
 }
-.engineering-sub li {
+.engineering-sub li,
+.architecture-sub li,
+.landscape-sub li,
+.planning-sub li,
+.products-sub li {
+  padding: 8px;
   position: relative;
 }
 .architecture-sub {
@@ -203,9 +206,7 @@ a {
   padding: 10px 0;
   z-index: 10;
 }
-.architecture-sub li {
-  position: relative;
-}
+
 .planning-sub {
   justify-content: center;
   background-color: white;
@@ -218,9 +219,7 @@ a {
   padding: 10px 0;
   z-index: 10;
 }
-.planning-sub li {
-  position: relative;
-}
+
 .products-sub {
   justify-content: center;
   background-color: white;
@@ -233,9 +232,7 @@ a {
   padding: 10px 0;
   z-index: 10;
 }
-.products-sub li {
-  position: relative;
-}
+
 .navbar-wrapper .active-dot {
   position: absolute;
   width: 5px;
@@ -436,7 +433,7 @@ a {
 }
 
 .detail-item p {
-  font-size: 13px;
+  font-size: 12px;
   max-width: 300px;
   white-space: normal;
 }
@@ -840,6 +837,5 @@ a {
   }
   .footer .footer-toggle {
     justify-content: center;
-    /* margin: 10px; */
   }
 }
